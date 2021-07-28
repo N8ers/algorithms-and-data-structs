@@ -23,25 +23,43 @@ function same(arr1, arr2) {
 
   // build an obj for arr1 of values^2: frequency
   let refernceObj = {};
-  for (let i = 0; i < arr2.length; i++) {
+  for (let i = 0; i < arr1.length; i++) {
     const squaredValue = arr1[i] ** 2;
 
     if (!refernceObj[squaredValue]) {
-      refernceObj[squaredValue] = 0;
+      refernceObj[squaredValue] = 1;
     }
 
-    refernceObj[squaredValue] = refernceObj[squaredValue]++;
+    refernceObj[squaredValue] = refernceObj[squaredValue] + 1;
   }
 
-  console.log("referenceObj ", refernceObj);
-
   // loop over arr2, removing items from obj
+  for (let i = 0; i < arr2.length; i++) {
+    // check if arr2[i] has a value in referenceObj
+    if (!refernceObj[arr2[i]]) {
+      console.log(arr2[i], " does not appear in the reference object");
+      return false;
+    }
+
+    refernceObj[arr2[i]] = refernceObj[arr2[i]] - 1;
+
+    // if value in referenceObj, subtract value OR delete from obj if 0
+    if (refernceObj[arr2[i]] < 1) {
+      delete refernceObj[arr2[i]];
+    }
+  }
+
+  if (!refernceObj === {}) {
+    console.log("referenceObject is not empty");
+    return false;
+  }
 
   // if obj is empty, return true
   console.log("true, so far");
+  return true;
 }
 
 same([1, 2, 3], [4, 1, 9]); // true
 same([1, 2, 3], [1, 9]); // false
 same([1, 2, 1], [4, 4, 1]); // false
-same([3, 2, 4], "I am a string"); // false
+same([3, 2, 4], "I am a string"); // false;
