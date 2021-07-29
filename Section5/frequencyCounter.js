@@ -8,7 +8,7 @@
 // sample 3) same([1,2,1], [4,4,1]) // false
 
 // My first approach
-function same(arr1, arr2) {
+function same_1(arr1, arr2) {
   // are both args arrays
   if (!Array.isArray(arr1) || !Array.isArray(arr2)) {
     console.log("At leaset one argument is not an arrray");
@@ -56,6 +56,37 @@ function same(arr1, arr2) {
 
   // if obj is empty, return true
   console.log("true, so far");
+  return true;
+}
+
+// Colt refactor
+function same(arr1, arr2) {
+  if (arr1.length !== arr2.length) {
+    return false;
+  }
+
+  let frequencyCounter1 = {};
+  let frequencyCounter2 = {};
+
+  for (let val of arr1) {
+    frequencyCounter1[val] = (frequencyCounter1[val] || 0) + 1;
+  }
+
+  for (let val of arr2) {
+    frequencyCounter2[val] = (frequencyCounter2[val] || 0) + 1;
+  }
+
+  // this is cool, instead of 'destroying' the referenceObj, we make two obj...
+  // then loop through the values and see if the match frequency
+  for (let key in frequencyCounter1) {
+    if (!(key ** 2 in frequencyCounter2)) {
+      return false;
+    }
+
+    if (frequencyCounter2[key ** 2] !== frequencyCounter1[key]) {
+      return false;
+    }
+  }
   return true;
 }
 
