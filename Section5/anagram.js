@@ -7,7 +7,7 @@
 // sample 4) anagram('qwerty', 'qeywrt') // true
 
 // My first approach
-function anagram(str1, str2) {
+function my_anagram(str1, str2) {
   // check for string type
   if (typeof str1 !== "string" || typeof str2 !== "string") {
     console.log(`"${str1}" and/or "${str2}" is not of string.`);
@@ -32,8 +32,8 @@ function anagram(str1, str2) {
     frequencyCounter2[letter] = (frequencyCounter2[letter] || 0) + 1;
   }
 
-  for (let value in frequencyCounter1) {
-    if (frequencyCounter1[value] !== frequencyCounter2[value]) {
+  for (let key in frequencyCounter1) {
+    if (frequencyCounter1[key] !== frequencyCounter2[key]) {
       console.log(
         `"${str1}" and "${str2}" are anagrams. Incorrect frequency if letters`
       );
@@ -42,6 +42,27 @@ function anagram(str1, str2) {
   }
 
   console.log(`"${str1}" and "${str2}" are anagrams!`);
+  return true;
+}
+
+// Colt refactor
+function anagram(str1, str2) {
+  const lookup = {};
+
+  for (let i = 0; i < str1.length; i++) {
+    let letter = str1[i];
+    lookup[letter] ? (lookup[letter] += 1) : (lookup[letter] = 1);
+  }
+
+  for (let i = 0; i < str2.length; i++) {
+    let letter = str2[i];
+
+    if (!lookup[letter]) {
+      return false;
+    } else {
+      lookup[letter] -= 1;
+    }
+  }
   return true;
 }
 
