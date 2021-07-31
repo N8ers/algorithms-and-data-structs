@@ -8,14 +8,16 @@
 
 // My first approach
 function anagram(str1, str2) {
-  // check for string type + length match
+  // check for string type
   if (typeof str1 !== "string" || typeof str2 !== "string") {
-    console.log("an argument is not a string");
+    console.log(`"${str1}" and/or "${str2}" is not of string.`);
     return false;
   }
-
+  // check for matching lengths
   if (str1.length !== str2.length) {
-    console.log("string lengths do not match");
+    console.log(
+      `"${str1}" and "${str2}" are NOT anagrams. String lengths do not match.`
+    );
     return false;
   }
 
@@ -31,9 +33,15 @@ function anagram(str1, str2) {
   }
 
   for (let value in frequencyCounter1) {
-    // value match here
+    if (frequencyCounter1[value] !== frequencyCounter2[value]) {
+      console.log(
+        `"${str1}" and "${str2}" are anagrams. Incorrect frequency if letters`
+      );
+      return false;
+    }
   }
 
+  console.log(`"${str1}" and "${str2}" are anagrams!`);
   return true;
 }
 
