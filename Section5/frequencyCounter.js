@@ -8,7 +8,7 @@
 // sample 3) same([1,2,1], [4,4,1]) // false
 
 // My first approach
-function same_1(arr1, arr2) {
+function my_same(arr1, arr2) {
   // are both args arrays
   if (!Array.isArray(arr1) || !Array.isArray(arr2)) {
     console.log("At leaset one argument is not an arrray");

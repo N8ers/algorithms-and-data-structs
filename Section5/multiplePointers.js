@@ -8,7 +8,7 @@
 // sample 3) sumZero([1,2,3])            // undefined
 
 // My first approach
-function sumZero(arr) {
+function my_sumZero(arr) {
   let point1 = 0;
   let point2 = arr.length - 1;
   let target = 0;
