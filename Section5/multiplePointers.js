@@ -1,6 +1,6 @@
 // Example 1                                                      //
 // Write a function called 'sumZero', that accepts a SORTED array //
-// The function should find the FIRST pair where the sum is 0     //                                      //
+// The function should find the FIRST pair where the sum is 0     //
 // Return an array that includes both values that sum to zero     //
 // OR undefined if a pair does not exist                          //
 // sample 1) sumZero([-3,-2,-1,0,1,2,3]) // [-3,3]
@@ -30,6 +30,26 @@ function my_sumZero(arr) {
       point2 = point2 - 1;
     } else {
       point1 = point1 + 1;
+    }
+  }
+}
+
+// Notes:
+// the while loop condition on Colts is a lot better than mine.
+// doing -- and ++ is cool, but idk if i prefer it.
+
+// Colt refactor
+function sumZero(arr) {
+  let left = 0;
+  let right = arr.length - 1;
+  while (left < right) {
+    let sum = arr[left] + arr[right];
+    if (sum === 0) {
+      return [arr[left], arr[right]];
+    } else if (sum > 0) {
+      right--;
+    } else {
+      right++;
     }
   }
 }
