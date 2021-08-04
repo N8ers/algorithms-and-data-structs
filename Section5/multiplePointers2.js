@@ -6,7 +6,7 @@
 // sample 2) countUniqueValues([1,2,3,4,4,7,7,12,13]) // 7
 // sample 3) countUniqueValues([-2,-1-1,0,1])         // 4
 
-function countUniqueValues(arr) {
+function my_countUniqueValues(arr) {
   let left = 0;
   let right = 1;
   let uniqueValues = [];
@@ -24,6 +24,23 @@ function countUniqueValues(arr) {
   }
 
   console.log("return ", uniqueValues.length + 1);
+}
+
+// Notes
+// this is cool, so the for loop automatically increments pointer2
+// if pointer2 and pointer1 match, we add one to the 'counter' (i)
+// then bring i up to the current value of j
+
+// Colts refactor
+function countUniqueValues(arr) {
+  let i = 0;
+
+  for (let j = 1; j < arr.length; j++) {
+    if (arr[i] !== arr[j]) {
+      i++;
+      arr[i] === arr[j];
+    }
+  }
 }
 
 countUniqueValues([1, 2, 3, 4, 5]); // 5
